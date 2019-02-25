@@ -1,5 +1,3 @@
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
 import csv
 import re
 import pythainlp
@@ -51,17 +49,6 @@ def main(party_name):
     json.dump(freq, file, ensure_ascii=False)
     file.close()
 
-
-    # wc = WordCloud(
-    #     font_path='Arundinamono.ttf',
-    #     background_color="white",
-    #     width=1024,
-    #     height=768,
-    #     regexp=r"[\u0E00-\u0E7Fa-zA-Z']+",).generate(wordline)
-
-    # plt.imsave('%s.png' % party_name, wc)
-
-
 if __name__ == '__main__':
-    for i in ['ประชาธิปัตย์', 'พลังประชารัฐ', 'รวมพลังประชาชาติไทย', 'เสรีรวมไทย']:
+    for i in ['ประชาธิปัตย์', 'พลังประชารัฐ', 'รวมพลังประชาชาติไทย', 'เสรีรวมไทย', 'เพื่อไทย']:
         main(i)
