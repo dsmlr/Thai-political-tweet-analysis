@@ -23,19 +23,26 @@ def main(user_list):
                     'date': tw.date.strftime('%d-%m-%Y %H:%M'),
                     'retweet': tw.retweets,
                     'like': tw.favorites,
-                })            
+                })
             json.dump(data, fp, ensure_ascii=False)
 
         print('%s tweets has been saved.' % user)
 
 if __name__ == "__main__":
     with open('username_list.txt', 'r') as fp:
-        data = fp.readlines()
+        users = fp.readlines()
 
-    data = list(map(lambda x: x.strip(), data))
-    random.shuffle(data)
+    print(len(set(users)), len(output_files))
 
-    user_list1, user_list2 = data[:3110], data[3110:]
+    users = map(lambda x: x.strip(), users)
+    users = filter(lambda x: '%s.json' % x not in output_files, users)
+    users = list(users)
+
+    print(len(users), len(output_files))
+
+    random.shuffle(users)
+
+    user_list1, user_list2 = users[:3110], users[3110:]
     thread1 = threading.Thread(target=main, args=(user_list1,))
     thread2 = threading.Thread(target=main, args=(user_list2,))
 
